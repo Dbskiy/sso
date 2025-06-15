@@ -158,13 +158,17 @@ func (a *Auth) IsAdmin(
 
 	isAdmin, err := a.userProvider.IsAdmin(ctx, userID)
 
-	if err != nil {
-		if errors.Is(err, storage)
+	if err != nil { //TODO: ПРОВЕРИТЬ, что корректно обрабатывается ошибка
+		if errors.Is(err, storage.ErrUserNotFound) {
+			a.log.Warn("user not found", sl.Err(err))
+
+			return false, fmt.Errorf("%s: %w", op, ErrInvalidCredentials)
+		}
+
+		a.log.Error("failed to get user", sl.Err(err))
 		return false, fmt.Errorf("%s: %w", op, err)
 	}
 
 	log.Info("checked if user is admin", slog.Bool("is_admin", isAdmin))
 	return isAdmin, nil
 }
-
-//TODO: пробросить ошибки из storage (добавить в методы)
