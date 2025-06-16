@@ -1,5 +1,5 @@
 env: "local" #dev, prod
-storage_path: "./hz_suka/"
+storage_path: "postgres://postgres:GingerBratzDoll28022005@localhost:5433/SsoDB"
 token_ttl: 1h
 grpc:
   port: 8080
