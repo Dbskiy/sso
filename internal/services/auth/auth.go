@@ -158,7 +158,7 @@ func (a *Auth) IsAdmin(
 
 	isAdmin, err := a.userProvider.IsAdmin(ctx, userID)
 
-	if err != nil { //TODO: ПРОВЕРИТЬ, что корректно обрабатывается ошибка
+	if err != nil {
 		if errors.Is(err, storage.ErrUserNotFound) {
 			a.log.Warn("user not found", sl.Err(err))
 
