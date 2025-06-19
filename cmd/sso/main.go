@@ -17,6 +17,8 @@ const (
 )
 
 func main() {
+	//TODO: SET USER ADMIN
+	//TODO: При соединении этого сервиса с другим приложением настроить защищенное соединение
 	cfg := config.MustLoad()
 
 	log := setupLogger(cfg.Env)
